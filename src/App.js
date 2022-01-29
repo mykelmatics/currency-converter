@@ -6,8 +6,8 @@ import "./App.css";
 import CurrencyInput from "./CurrencyInput";
 import Loader from "./Loader";
 
-const BASE_URL =
-  "http://data.fixer.io/api/latest?access_key=57a423c25ad080ccd2feef7ba6d6198b";
+const API_KEY = process.env.REACT_APP_EXCHANGE_API_KEY;
+const BASE_URL = `http://data.fixer.io/api/latest?access_key=${API_KEY}`;
 
 const App = () => {
   const [amount1, setAmount1] = useState(1);
@@ -16,6 +16,9 @@ const App = () => {
   const [currency2, setCurrency2] = useState("EUR");
   const [rates, setRates] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  // console.log(API_KEY);
+  // console.log(process.env);
+
 
   useEffect(() => {
     axios.get(`${BASE_URL}`).then((response) => {
