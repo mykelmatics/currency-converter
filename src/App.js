@@ -30,7 +30,7 @@ const App = () => {
     if (rates) {
       initialRate();
     }
-  }, [rates]);
+  }, [initialRate, rates]);
 
   function format(number) {
     return number.toFixed(4);
