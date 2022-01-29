@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import "./App.css";
 import CurrencyInput from "./CurrencyInput";
@@ -22,23 +22,25 @@ const App = () => {
       setRates(response.data.rates);
     });
   }, []);
-   function initialRate() {
-     handleAmount1Change(1);
-   }
+  const handleAmount1Change = useCallback(
+    (amount1) => {
+      setAmount2(format((amount1 * rates[currency2]) / rates[currency1]));
+      setAmount1(amount1);
+    },
+    [currency1, currency2, rates]
+  );
   useEffect(() => {
     if (rates) {
-   
+      function initialRate() {
+        handleAmount1Change(1);
+      }
+
       initialRate();
     }
-  }, [rates,initialRate]);
+  }, [rates, handleAmount1Change]);
 
   function format(number) {
     return number.toFixed(4);
-  }
-
-  function handleAmount1Change(amount1) {
-    setAmount2(format((amount1 * rates[currency2]) / rates[currency1]));
-    setAmount1(amount1);
   }
 
   function handleCurrency1Change(currency1) {
