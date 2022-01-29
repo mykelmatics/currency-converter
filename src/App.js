@@ -16,21 +16,21 @@ const App = () => {
   const [currency2, setCurrency2] = useState("EUR");
   const [rates, setRates] = useState([]);
   const [loaded, setLoaded] = useState(false);
- 
+
   useEffect(() => {
     axios.get(`${BASE_URL}`).then((response) => {
       setRates(response.data.rates);
     });
   }, []);
-  function initialRate() {
-    handleAmount1Change(1);
-  }
-
+   function initialRate() {
+     handleAmount1Change(1);
+   }
   useEffect(() => {
     if (rates) {
+   
       initialRate();
     }
-  }, [initialRate, rates]);
+  }, [rates,initialRate]);
 
   function format(number) {
     return number.toFixed(4);
@@ -77,7 +77,7 @@ const App = () => {
           </div>
           <div className="currency-converter">
             <h1>Currency Converter</h1>
-            <img src="/exchange-rate.svg" />
+            <img src="/exchange-rate.svg" alt="exchangerate" />
           </div>
           <div className="input-wrapper">
             <p className="input-header">
