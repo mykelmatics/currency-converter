@@ -16,10 +16,7 @@ const App = () => {
   const [currency2, setCurrency2] = useState("EUR");
   const [rates, setRates] = useState([]);
   const [loaded, setLoaded] = useState(false);
-  // console.log(API_KEY);
-  // console.log(process.env);
-
-
+ 
   useEffect(() => {
     axios.get(`${BASE_URL}`).then((response) => {
       setRates(response.data.rates);
@@ -119,7 +116,10 @@ const App = () => {
           </div>
           <div className="name">
             <span>Built with ❤️ by</span>
-            <a href="https://github.com/mykelmatics" target="_blank">
+            <a
+              href="https://github.com/mykelmatics"
+              target="_blank"
+              rel="noreferrer">
               Onafusi Micheal
             </a>
           </div>
